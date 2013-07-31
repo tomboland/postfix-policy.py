@@ -25,23 +25,21 @@ Features (to come)
 
 Usage
 -----
-Currently there is no init script. Start the server by downloading 
-
-`mkdir postfix-policy.py`
+Currently there is no init script. Start the server by cloning the repository 
 
 `git clone https://github.com/grimmzen/postfix-policy.py.git`
 
 and issuing 
 
-`nohup ./postfix-policy.py >/dev/null 2>&1 &`
+`nohup postfix-policy.py/postfix-policy.py >/dev/null 2>&1 &`
 
 on your terminal. You can use the policy server by inserting the check_policy_service argument to your smtpd_recipient_restrictions 
-to the desired place in the chain, for example:
+to the desired place in the chain in your main.cf, for example:
 
 `smtpd_recipient_restrictions = permit_my_networks, reject_unlisted_sender, check_policy_service inet:127.0.0.1:10032, permit_sasl_authenticated, reject_unauth_destination`
 
-Before starting the server you should change the values in the ''' Setting go here ''' section of the code. I think a
-config file would go to far at the moment.
+and reloading Postfix. Before starting the server you should change the values in the ''' Setting go here ''' section of the code. I think a
+config file would go too far at the moment.
 
 Cheers
 
