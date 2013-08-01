@@ -8,7 +8,10 @@ resp. the sasl username. The recommended way of throtteling is the host based ty
 and sends his crap over thousands or millions of different hosts? I finally switched to user based throtteling to solve that problem. But when
 the limits are high to make your server user friendly, they are still able to send the given amount of mail.
 The basic idea is now, to check if a certain sender or sasl user is sending mail from different origins in a timespan.
-If we reach a critical number of origins, the policy server denies the request.
+If we reach a critical number of origins, the policy server denies the request. The advantage is, that this method stops
+such attacks in an early stage, before counters go apeshit, and maybe thousands of mails have already been sent.
+
+**At the moment this is just a proof of concept, but the code works though.**
 
 The server uses an in-memory sqlite database which is flushed to disk after shutdown (and loaded on startup) and asyncore
 to handle a large amount of requests.
