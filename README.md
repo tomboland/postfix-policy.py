@@ -2,7 +2,7 @@ postfix-policy.py
 =================
 
 I came up with the idea of creating another policy server for postfix, when i spotted a very
-interesting way of levering the current policies. They use compromised accounts to send UCE as usual. I'm using [postfix-policyd](http://policyd.org)
+interesting way of levering the current policies. Spammers use compromised accounts to send UCE as usual. I'm using [postfix-policyd](http://policyd.org)
 already, but you just have two ways of sender based throtteling, either based on the host or based on the sender address
 resp. the sasl username. The recommended way of throtteling is the host based type. But what if a spammer has access to a bot net
 and sends his crap over thousands or millions of different hosts? I finally switched to user based throtteling to solve that problem. But when
