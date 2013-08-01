@@ -6,7 +6,7 @@ interesting way of levering the current policies. Spammers use compromised accou
 already, but you just have two ways of sender based throtteling, either based on the host or based on the sender address
 resp. the sasl username. The recommended way of throtteling is the host based type. But what if a spammer has access to a bot net
 and sends his crap over thousands or millions of different hosts? I finally switched to user based throtteling to solve that problem. But when
-the limits are high to make your server user friendly, they are still able to send the given amount of mail.
+the limits are high to make your server user friendly, spammers are still able to send the given amount of mail.
 The basic idea is now, to check if a certain sender or sasl user is sending mail from different origins in a timespan.
 If we reach a critical number of origins, the policy server denies the request. The advantage is, that this method stops
 such attacks in an early stage, before counters go apeshit, and maybe thousands of mails have already been sent.
