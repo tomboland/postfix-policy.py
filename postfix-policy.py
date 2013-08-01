@@ -66,7 +66,8 @@ class PolicyServer(asyncore.dispatcher):
         # flush the memory database to disk
         global conn
         # remove the old file
-        os.unlink(flush_database)
+        if(os.path.exists(flush_database)):
+            os.unlink(flush_database)
         flush_db=sqlite3.connect(flush_database)
         flush_query = "".join(line for line in conn.iterdump())
         flush_db.executescript(flush_query)
