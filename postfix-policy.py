@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import asyncore, socket, sqlite3, time, syslog, sys, os
+import asyncore, socket, sqlite3, time, syslog, sys, os, signal
 
 '''
 Settings go here
@@ -176,12 +176,20 @@ class PolicyRequestHandler(asyncore.dispatcher_with_send):
         self.send(action)
         self.close()
                 
+def shutdown_handler(signum, frame):
+    global s
+    s.cleanup()
+    del s
+    raise asyncore.ExitNow()
+
+signal.signal(signal.SIGHUP, shutdown_handler)
+
 s = PolicyServer(bind_ip, port)
+
 try:
     asyncore.loop()
 except:
     # graceful exit
     s.cleanup()
     del s
-
-
+    raise asyncore.ExitNow()
